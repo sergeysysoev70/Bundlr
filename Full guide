@@ -1,0 +1,100 @@
+sudo apt update && sudo apt upgrade
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+
+apt-cache policy docker-ce
+
+sudo apt install docker-ce
+
+*************************************************************************
+DOCKER
+apt install docker-compose
+
+docker-compose version
+
+sudo systemctl status docker
+
+
+*************************************************************************
+NODA
+
+git clone --recurse-submodules https://github.com/Bundlr-Network/validator-rust.git
+
+cd validator-rust
+
+apt install cargo
+
+
+curl https://sh.rustup.rs -sSf | sh				//(La comanda trebuie de ales versiunea 1 din terminal)
+
+
+source "$HOME/.cargo/env"
+
+
+					//.   https://arweave.app/welcome
+(Facem wallet, descarci file “de schimbat denumirea ‘walllet.json’ și de pus file în directorii /validator-rust”)
+
+De salvat și inchis
+
+
+****************************************************************************
+
+
+cp example.env .env
+
+
+vi .env						//{ESC + I} - to edit 
+
+
+PORT=80
+BUNDLER_URL=https://testnet1.bundlr.network
+GW_CONTRACT="RkinCLBlY4L5GZFv8gCFcrygTyd5Xm91CzKlR6qxhKA"
+
+For exit we use”{ ESC + SHIFT +Z + Z}”
+
+**********************************************************
+
+docker-compose up
+
+git pull origin master
+
+docker-compose build
+
+docker-compose up
+
+(https://bundlr.network/faucet)
+**************************************************************
+
+
+INSTALL nodejs
+
+apt install nodejs
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+source ~/.bashrc
+
+nvm --version
+
+nvm install v16.16.0
+
+node --version
+
+INREGISTRARE VALIDATOR 
+
+npx @bundlr-network/testnet-cli@latest balance u4UiVcxeup70M5BPbS9UzXj6j_rxawcRduh7PN_aBOI
+
+npx @bundlr-network/testnet-cli@latest join RkinCLBlY4L5GZFv8gCFcrygTyd5Xm91CzKlR6qxhKA -w wallet.json -u http://test-validator.bundlr.network
+
+npx @bundlr-network/testnet-cli@latest check RkinCLBlY4L5GZFv8gCFcrygTyd5Xm91CzKlR6qxhKA 9LJp_wLNcJOu10VqrevXMinUN-hHnz3v15sHb9irvUQ
+
+check status: https://bundlr.network/explorer/Ry2bDGfBIvYtvDPYnf0eg_ijH4A1EDKaaEEecyjbUQ4
+
+Check balance: npx @bundlr-network/testnet-cli@latest balance CcAjK4loKePY-j26jKdWznr4UckpP99Yx6cpaEbXgHo
+Do not use ,,reboot” 
+//Command- update and run again validator
+git pull origin master && git submodule update --init --recursive && docker-compose up -d
